@@ -103,10 +103,7 @@
 
   <!-- 英雄区域 -->
   <header class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-    <div class="absolute inset-0 z-0">
-      <img src="https://picsum.photos/id/1068/1920/1080" alt="星空下的浪漫场景" class="w-full h-full object-cover opacity-50">
-      <div class="absolute inset-0 bg-gradient-to-b from-primary/30 to-dark/40"></div>
-    </div>
+    <div class="absolute inset-0 z-0 bg-gradient-to-b from-primary/50 to-dark/70"></div>
     
     <div class="container mx-auto px-4 z-10 text-center">
       <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-bold text-white text-shadow-lg mb-6 animate-fade-in">
@@ -156,8 +153,11 @@
           </div>
         </div>
         <div class="order-1 md:order-2 relative">
-          <div class="rounded-2xl overflow-hidden shadow-2xl transform transition-transform hover:scale-[1.02] duration-500">
-            <img src="https://picsum.photos/id/1074/800/600" alt="牛郎织女鹊桥相会" class="w-full h-auto">
+          <div class="rounded-2xl overflow-hidden shadow-2xl transform transition-transform hover:scale-[1.02] duration-500 bg-gradient-to-br from-primary/20 to-secondary/30 p-8 flex items-center justify-center">
+            <div class="text-center">
+              <i class="fa fa-heart text-6xl text-primary mb-4 animate-pulse"></i>
+              <p class="text-xl text-dark italic">千年等待，只为一朝相见</p>
+            </div>
           </div>
           <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-accent/20 rounded-full z-[-1]"></div>
           <div class="absolute -top-6 -right-6 w-32 h-32 bg-primary/20 rounded-full z-[-1]"></div>
@@ -173,8 +173,7 @@
       
       <div class="relative h-64 md:h-80 max-w-4xl mx-auto">
         <!-- 鹊桥 -->
-        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-2xl h-40 md:h-56 bg-secondary/30 rounded-t-[100px] overflow-hidden">
-          <div class="absolute inset-0 bg-[url('https://picsum.photos/id/1025/1000/500')] bg-cover bg-center opacity-30"></div>
+        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-2xl h-40 md:h-56 bg-secondary/30 rounded-t-[100px] overflow-hidden backdrop-blur-sm">
           
           <!-- 喜鹊 -->
           <div class="absolute top-10 left-[20%] w-8 h-8 text-dark transform rotate-45 animate-twinkle" style="animation-delay: 0.2s">
@@ -226,8 +225,8 @@
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- 习俗卡片 1 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-          <div class="h-48 overflow-hidden">
-            <img src="https://picsum.photos/id/292/600/400" alt="穿针乞巧" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          <div class="h-48 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+            <i class="fa fa-thread text-6xl text-primary"></i>
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-dark mb-3">穿针乞巧</h3>
@@ -239,8 +238,8 @@
         
         <!-- 习俗卡片 2 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-          <div class="h-48 overflow-hidden">
-            <img src="https://picsum.photos/id/431/600/400" alt="拜织女" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          <div class="h-48 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+            <i class="fa fa-pagelines text-6xl text-primary"></i>
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-dark mb-3">拜织女</h3>
@@ -252,8 +251,8 @@
         
         <!-- 习俗卡片 3 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-          <div class="h-48 overflow-hidden">
-            <img src="https://picsum.photos/id/132/600/400" alt="吃巧果" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          <div class="h-48 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+            <i class="fa fa-cutlery text-6xl text-primary"></i>
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-dark mb-3">吃巧果</h3>
@@ -265,8 +264,8 @@
         
         <!-- 习俗卡片 4 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-          <div class="h-48 overflow-hidden">
-            <img src="https://picsum.photos/id/118/600/400" alt="种生求子" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          <div class="h-48 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+            <i class="fa fa-leaf text-6xl text-primary"></i>
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-dark mb-3">种生求子</h3>
@@ -704,4 +703,3 @@
   </script>
 </body>
 </html>
-
