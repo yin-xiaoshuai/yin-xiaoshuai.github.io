@@ -1,12 +1,345 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>首页</title>
-</head>
-<body>
-    网页首页
-    <img src="1.jpg" alt="图片1" width="500" height="800" />
-    <img src="2.jpg" alt="图片2" width="500" height="800" />
-</body>
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>特别的祝福</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      crossorigin="anonymous"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#FF6B8B',
+              secondary: '#8A2BE2',
+              accent: '#FFD700',
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+          },
+        }
+      }
+    </script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .text-shadow {
+          text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .bg-gradient-love {
+          background: linear-gradient(135deg, #FF6B8B 0%, #8A2BE2 100%);
+        }
+        .page {
+          display: none;
+          min-height: 100vh;
+        }
+        .page.active {
+          display: block;
+        }
+        .balloon {
+          position: absolute;
+          bottom: -100px;
+          animation: float 20s linear infinite;
+          opacity: 0;
+        }
+        @keyframes float {
+          0% {
+            transform: translateY(0);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(-1000px);
+            opacity: 0;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen font-sans overflow-x-hidden">
+    <!-- 首页 -->
+    <div id="homePage" class="page active bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+          特别的祝福
+        </h1>
+        <p class="text-lg text-gray-600 max-w-md mx-auto">
+          点击下方按钮，送给她一个充满爱的生日惊喜
+        </p>
+      </div>
+
+      <div class="transform transition-all duration-300 hover:scale-105 active:scale-95">
+        <button
+          onclick="switchPage('birthdayPage')"
+          class="inline-block bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 text-lg md:text-xl"
+        >
+          <i class="fa-solid fa-heart mr-2"></i>
+          打开生日祝福
+        </button>
+      </div>
+
+      <div class="mt-16 text-center text-gray-500 text-sm">
+        <p>❤️ 用爱制作的专属祝福 ❤️</p>
+      </div>
+
+      <!-- 装饰元素 -->
+      <div class="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden -z-10" id="homeDecorations">
+        <!-- 动态生成的爱心装饰 -->
+      </div>
+    </div>
+
+    <!-- 生日祝福页面 -->
+    <div id="birthdayPage" class="page min-h-screen bg-gradient-to-br from-pink-50 to-purple-100 overflow-hidden">
+      <!-- 顶部装饰 -->
+      <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-pink-300/30 to-transparent -z-10"></div>
+
+      <!-- 页面标题 -->
+      <header class="py-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-600">
+          生日快乐，我的爱！
+        </h1>
+      </header>
+
+      <!-- 主要内容区 -->
+      <main class="container mx-auto px-4 py-8">
+        <!-- 生日卡片 -->
+        <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-[1.01] transition-all duration-300">
+          <!-- 卡片顶部图片 -->
+          <div class="h-64 overflow-hidden relative">
+            <img
+              src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_16_9&prompt=Birthday%20background%20with%20balloons%20and%20confetti&sign=5a81eb555df78aaa347a5251ca58984c"
+              alt="Birthday celebration"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div class="absolute bottom-4 left-0 right-0 text-center">
+              <span class="inline-block bg-pink-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                特别的日子 ❤️
+              </span>
+            </div>
+          </div>
+
+          <!-- 祝福消息 -->
+          <div class="p-6 md:p-8">
+            <div class="space-y-4 mb-8" id="birthdayMessage">
+              <!-- 动态显示的祝福消息 -->
+            </div>
+
+            <!-- 音乐控制区 -->
+            <div class="mt-8 text-center">
+              <div class="inline-flex items-center justify-center bg-gradient-to-r from-pink-500 to-purple-600 rounded-full p-3 shadow-lg">
+                <button
+                  onclick="toggleMusic()"
+                  class="text-white p-2 rounded-full hover:bg-white/20 transition-colors"
+                  id="musicButton"
+                >
+                  <i class="fa-solid fa-play text-xl"></i>
+                </button>
+                <span class="ml-3 text-white font-medium" id="musicStatus">
+                  点击播放生日音乐
+                </span>
+              </div>
+
+               <!-- 音频元素 -->
+               <audio
+                 id="audioPlayer"
+                 src="srkl.mp3"
+                 loop
+                 autoplay
+                 playsinline
+                 class="hidden"
+               />
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 底部装饰元素 -->
+        <div class="mt-12 flex justify-center">
+          <div class="inline-block animate-bounce">
+            <i class="fa-solid fa-gift text-4xl text-pink-500"></i>
+          </div>
+        </div>
+      </main>
+
+      <!-- 页脚 -->
+      <footer class="mt-16 py-6 text-center text-gray-500 text-sm">
+        <p>用❤️制作的生日祝福 &copy; {new Date().getFullYear()}</p>
+      </footer>
+
+      <!-- 装饰性元素 - 气球 -->
+      <div class="fixed bottom-0 left-0 w-full h-64 pointer-events-none overflow-hidden -z-10" id="balloonContainer">
+        <!-- 动态生成的气球 -->
+      </div>
+    </div>
+
+    <script>
+      // 页面切换功能
+      function switchPage(pageId) {
+        // 隐藏所有页面
+        document.querySelectorAll('.page').forEach(page => {
+          page.classList.remove('active');
+        });
+        // 显示目标页面
+        document.getElementById(pageId).classList.add('active');
+
+        // 如果切换到生日页面，初始化生日页面元素
+        if (pageId === 'birthdayPage') {
+          initBirthdayPage();
+        } else if (pageId === 'homePage') {
+          initHomePage();
+        }
+      }
+
+      // 音乐播放功能
+      let isPlaying = false;
+      const audioPlayer = document.getElementById('audioPlayer');
+      const musicButton = document.getElementById('musicButton');
+      const musicStatus = document.getElementById('musicStatus');
+
+      function toggleMusic() {
+        if (isPlaying) {
+          audioPlayer.pause();
+          musicButton.innerHTML = '<i class="fa-solid fa-play text-xl"></i>';
+          musicStatus.textContent = '点击播放生日音乐';
+        } else {
+          audioPlayer.play().then(() => {
+            musicButton.innerHTML = '<i class="fa-solid fa-pause text-xl"></i>';
+            musicStatus.textContent = '正在播放生日音乐';
+          }).catch(error => {
+            console.log("音乐播放需要用户交互:", error);
+            alert("请点击播放按钮以开始播放音乐");
+          });
+        }
+        isPlaying = !isPlaying;
+      }
+
+      // 初始化生日页面
+      function initBirthdayPage() {
+        // 显示祝福消息
+        const messages = [
+          "我最亲爱的宝贝，",
+          "今天是个特别的日子，",
+          "是属于你的日子！",
+          "愿你的每一天都充满阳光和欢笑，",
+          "愿所有美好的事物都围绕着你，",
+          "生日快乐，我永远爱你！"
+        ];
+
+        const messageContainer = document.getElementById('birthdayMessage');
+        messageContainer.innerHTML = '';
+
+        messages.forEach((message, index) => {
+          setTimeout(() => {
+            const p = document.createElement('p');
+            p.className = 'text-lg md:text-xl text-gray-800 text-center leading-relaxed opacity-0 transform translate-y-4 transition-all duration-500';
+            p.textContent = message;
+            messageContainer.appendChild(p);
+
+            // 触发动画
+            setTimeout(() => {
+              p.classList.remove('opacity-0', 'translate-y-4');
+            }, 50);
+          }, 500 * (index + 1));
+        });
+
+         // 创建气球装饰
+         createBalloons();
+
+         // 尝试自动播放音乐
+         setTimeout(() => {
+           audioPlayer.play().then(() => {
+             isPlaying = true;
+             musicButton.innerHTML = '<i class="fa-solid fa-pause text-xl"></i>';
+             musicStatus.textContent = '正在播放生日音乐';
+           }).catch(error => {
+             console.log("自动播放失败，需要用户交互:", error);
+           });
+         }, 1000);
+       }
+
+      // 初始化首页
+      function initHomePage() {
+        // 创建爱心装饰
+        createHearts();
+      }
+
+      // 创建气球装饰
+      function createBalloons() {
+        const container = document.getElementById('balloonContainer');
+        container.innerHTML = '';
+
+        const colors = ['#FF6B8B', '#8A2BE2', '#FFD700', '#3498db', '#2ecc71'];
+
+        for (let i = 0; i < 8; i++) {
+          const balloon = document.createElement('div');
+          balloon.className = 'balloon';
+          balloon.innerHTML = '<i class="fa-solid fa-balloon"></i>';
+
+          // 随机样式
+          const size = 20 + Math.random() * 40;
+          const leftPosition = 10 + Math.random() * 80;
+          const animationDuration = 15 + Math.random() * 15;
+          const animationDelay = Math.random() * 5;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+
+          balloon.style.fontSize = `${size}px`;
+          balloon.style.left = `${leftPosition}%`;
+          balloon.style.animationDuration = `${animationDuration}s`;
+          balloon.style.animationDelay = `${animationDelay}s`;
+          balloon.style.color = color;
+
+          container.appendChild(balloon);
+        }
+      }
+
+      // 创建爱心装饰
+      function createHearts() {
+        const container = document.getElementById('homeDecorations');
+        container.innerHTML = '';
+
+        for (let i = 0; i < 10; i++) {
+          const heart = document.createElement('div');
+          heart.className = 'balloon';
+          heart.innerHTML = '<i class="fa-solid fa-heart"></i>';
+
+          // 随机样式
+          const size = 10 + Math.random() * 20;
+          const leftPosition = Math.random() * 100;
+          const animationDuration = 15 + Math.random() * 15;
+          const animationDelay = Math.random() * 5;
+          const opacity = 0.5 + Math.random() * 0.5;
+
+          heart.style.fontSize = `${size}px`;
+          heart.style.left = `${leftPosition}%`;
+          heart.style.animationDuration = `${animationDuration}s`;
+          heart.style.animationDelay = `${animationDelay}s`;
+          heart.style.color = Math.random() > 0.5 ? '#FF6B8B80' : '#8A2BE280';
+          heart.style.opacity = opacity;
+
+          container.appendChild(heart);
+        }
+      }
+
+      // 页面加载时初始化
+      window.onload = function() {
+        initHomePage();
+
+        // 尝试预加载音乐
+        audioPlayer.addEventListener('canplaythrough', function() {
+          console.log('音乐已准备就绪');
+        });
+      };
+    </script>
+  </body>
 </html>
