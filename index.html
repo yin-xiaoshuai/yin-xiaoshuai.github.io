@@ -77,9 +77,9 @@
           点击下方按钮，送给她一个充满爱的生日惊喜
         </p>
       </div>
-      
-      <div class="transform transition-all duration-300 hover:scale-105 active:scale-95">
-        <button 
+
+      <div class="flex justify-center transform transition-all duration-300 hover:scale-105 active:scale-95">
+        <button
           onclick="switchPage('birthdayPage')"
           class="inline-block bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 text-lg md:text-xl"
         >
@@ -87,11 +87,11 @@
           打开生日祝福
         </button>
       </div>
-      
+
       <div class="mt-16 text-center text-gray-500 text-sm">
         <p>❤️ 用爱制作的专属祝福 ❤️</p>
       </div>
-      
+
       <!-- 装饰元素 -->
       <div class="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden -z-10" id="homeDecorations">
         <!-- 动态生成的爱心装饰 -->
@@ -102,23 +102,23 @@
     <div id="birthdayPage" class="page min-h-screen bg-gradient-to-br from-pink-50 to-purple-100 overflow-hidden">
       <!-- 顶部装饰 -->
       <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-pink-300/30 to-transparent -z-10"></div>
-      
+
       <!-- 页面标题 -->
       <header class="py-8 text-center">
         <h1 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-600">
           生日快乐，我的爱！
         </h1>
       </header>
-      
+
       <!-- 主要内容区 -->
       <main class="container mx-auto px-4 py-8">
         <!-- 生日卡片 -->
         <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-[1.01] transition-all duration-300">
           <!-- 卡片顶部图片 -->
           <div class="h-64 overflow-hidden relative">
-            <img 
-              src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_16_9&prompt=Birthday%20background%20with%20balloons%20and%20confetti&sign=5a81eb555df78aaa347a5251ca58984c" 
-              alt="Birthday celebration" 
+            <img
+              src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_16_9&prompt=Birthday%20background%20with%20balloons%20and%20confetti&sign=5a81eb555df78aaa347a5251ca58984c"
+              alt="Birthday celebration"
               class="w-full h-full object-cover"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
@@ -128,17 +128,17 @@
               </span>
             </div>
           </div>
-          
+
           <!-- 祝福消息 -->
           <div class="p-6 md:p-8">
             <div class="space-y-4 mb-8" id="birthdayMessage">
               <!-- 动态显示的祝福消息 -->
             </div>
-            
+
             <!-- 音乐控制区 -->
             <div class="mt-8 text-center">
               <div class="inline-flex items-center justify-center bg-gradient-to-r from-pink-500 to-purple-600 rounded-full p-3 shadow-lg">
-                <button 
+                <button
                   onclick="toggleMusic()"
                   class="text-white p-2 rounded-full hover:bg-white/20 transition-colors"
                   id="musicButton"
@@ -149,16 +149,16 @@
                   点击播放生日音乐
                 </span>
               </div>
-              
+
                 <!-- 音频元素 -->
-                <audio 
-                  id="audioPlayer" 
-                  src="srkl.mp3" 
-                  loop 
+                <audio
+                  id="audioPlayer"
+                  src="srkl.mp3"
+                  loop
                   playsinline
                   class="hidden"
                 />
-                
+
                 <!-- 音频加载错误提示 -->
                 <div id="audioError" class="hidden mt-4 text-red-500 text-sm">
                   <i class="fa-solid fa-exclamation-circle mr-1"></i>
@@ -167,18 +167,7 @@
             </div>
           </div>
         </div>
-        
-        <!-- 返回首页按钮 -->
-        <div class="mt-8 text-center">
-          <button 
-            onclick="switchPage('homePage')"
-            class="inline-block bg-white text-gray-700 font-medium py-2 px-6 rounded-full shadow hover:shadow-md transition-all duration-300 text-sm"
-          >
-            <i class="fa-solid fa-arrow-left mr-1"></i>
-            返回首页
-          </button>
-        </div>
-        
+
         <!-- 底部装饰元素 -->
         <div class="mt-12 flex justify-center">
           <div class="inline-block animate-bounce">
@@ -186,12 +175,12 @@
           </div>
         </div>
       </main>
-      
+
       <!-- 页脚 -->
       <footer class="mt-16 py-6 text-center text-gray-500 text-sm">
         <p>用❤️制作的生日祝福 &copy; {new Date().getFullYear()}</p>
       </footer>
-      
+
       <!-- 装饰性元素 - 气球 -->
       <div class="fixed bottom-0 left-0 w-full h-64 pointer-events-none overflow-hidden -z-10" id="balloonContainer">
         <!-- 动态生成的气球 -->
@@ -207,7 +196,7 @@
         });
         // 显示目标页面
         document.getElementById(pageId).classList.add('active');
-        
+
         // 如果切换到生日页面，初始化生日页面元素
         if (pageId === 'birthdayPage') {
           initBirthdayPage();
@@ -215,13 +204,13 @@
           initHomePage();
         }
       }
-      
+
       // 音乐播放功能
       let isPlaying = false;
       const audioPlayer = document.getElementById('audioPlayer');
       const musicButton = document.getElementById('musicButton');
       const musicStatus = document.getElementById('musicStatus');
-      
+
       function toggleMusic() {
         if (isPlaying) {
           audioPlayer.pause();
@@ -238,7 +227,7 @@
         }
         isPlaying = !isPlaying;
       }
-      
+
       // 初始化生日页面
       function initBirthdayPage() {
         // 显示祝福消息
@@ -250,48 +239,48 @@
           "愿所有美好的事物都围绕着你，",
           "生日快乐，我永远爱你！"
         ];
-        
+
         const messageContainer = document.getElementById('birthdayMessage');
         messageContainer.innerHTML = '';
-        
+
         messages.forEach((message, index) => {
           setTimeout(() => {
             const p = document.createElement('p');
             p.className = 'text-lg md:text-xl text-gray-800 text-center leading-relaxed opacity-0 transform translate-y-4 transition-all duration-500';
             p.textContent = message;
             messageContainer.appendChild(p);
-            
+
             // 触发动画
             setTimeout(() => {
               p.classList.remove('opacity-0', 'translate-y-4');
             }, 50);
           }, 500 * (index + 1));
         });
-        
+
          // 创建气球装饰
          createBalloons();
-         
+
           // 检查音频文件是否可加载
           audioPlayer.addEventListener('error', function() {
             document.getElementById('audioError').classList.remove('hidden');
           });
-          
-          // 现代浏览器需要用户交互才能播放音频
-          // 显示提示信息
-          musicStatus.textContent = '请点击播放按钮开始音乐';
-          
-          // 尝试自动播放音乐（大多数浏览器会阻止）
-          setTimeout(() => {
-            audioPlayer.play().then(() => {
-              isPlaying = true;
-              musicButton.innerHTML = '<i class="fa-solid fa-pause text-xl"></i>';
-              musicStatus.textContent = '正在播放生日音乐';
-            }).catch(error => {
-              console.log("自动播放被浏览器阻止，请点击播放按钮:", error);
-              // 保持提示信息不变
-            });
-          }, 1000);
-       }
+
+           // 现代浏览器需要用户交互才能播放音频
+           // 显示提示信息
+           musicStatus.textContent = '请点击播放按钮开始音乐';
+
+           // 尝试自动播放音乐（大多数浏览器会阻止）
+           setTimeout(() => {
+             audioPlayer.play().then(() => {
+               isPlaying = true;
+               musicButton.innerHTML = '<i class="fa-solid fa-pause text-xl"></i>';
+               musicStatus.textContent = '正在播放生日音乐';
+             }).catch(error => {
+               console.log("自动播放被浏览器阻止，请点击播放按钮:", error);
+               // 保持提示信息不变
+             });
+           }, 1000);
+        }
       
       // 初始化首页
       function initHomePage() {
