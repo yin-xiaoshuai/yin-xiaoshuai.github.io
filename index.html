@@ -1,345 +1,316 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>特别的祝福</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      crossorigin="anonymous"
-    />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: '#FF6B8B',
-              secondary: '#8A2BE2',
-              accent: '#FFD700',
-            },
-            fontFamily: {
-              sans: ['Inter', 'system-ui', 'sans-serif'],
-            },
-          },
+    <title>母亲节快乐</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fce4ec 0%, #fff0f5 30%, #fff8e1 70%, #fce4ec 100%);
+            font-family: 'Georgia', 'Songti SC', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
         }
-      }
-    </script>
-    <style type="text/tailwindcss">
-      @layer utilities {
-        .text-shadow {
-          text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+        /* 飘落花瓣 */
+        .petal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
         }
-        .bg-gradient-love {
-          background: linear-gradient(135deg, #FF6B8B 0%, #8A2BE2 100%);
+        .petal {
+            position: absolute;
+            top: -40px;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(ellipse at 30% 30%, #ffb7c5, #f48fb1);
+            border-radius: 50% 0 50% 0;
+            opacity: 0.7;
+            animation: fall linear infinite;
         }
-        .page {
-          display: none;
-          min-height: 100vh;
+        @keyframes fall {
+            0%   { transform: translateY(-40px) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
         }
-        .page.active {
-          display: block;
+
+        /* 主卡片 */
+        .card {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 40px;
+            padding: 50px 40px 45px;
+            box-shadow:
+                0 20px 60px rgba(233, 30, 99, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+            text-align: center;
+            transition: transform 0.3s ease;
         }
-        .balloon {
-          position: absolute;
-          bottom: -100px;
-          animation: float 20s linear infinite;
-          opacity: 0;
+        .card:hover { transform: translateY(-4px); }
+
+        /* 装饰花环 */
+        .wreath {
+            font-size: 60px;
+            line-height: 1;
+            margin-bottom: 8px;
+            animation: sway 3s ease-in-out infinite;
         }
-        @keyframes float {
-          0% {
-            transform: translateY(0);
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(-1000px);
-            opacity: 0;
-          }
+        @keyframes sway {
+            0%, 100% { transform: rotate(-3deg); }
+            50%      { transform: rotate(3deg); }
         }
-      }
+
+        /* 标题 */
+        h1 {
+            font-size: 48px;
+            background: linear-gradient(135deg, #e91e63, #ff6f00, #e91e63);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s ease-in-out infinite;
+            margin-bottom: 4px;
+        }
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50%      { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #ad1457;
+            letter-spacing: 6px;
+            margin-bottom: 30px;
+        }
+
+        /* 分隔线 */
+        .divider {
+            width: 120px;
+            height: 2px;
+            margin: 0 auto 28px;
+            background: linear-gradient(90deg, transparent, #e91e63, transparent);
+            border-radius: 2px;
+        }
+
+        /* 祝福语 */
+        .message {
+            font-size: 18px;
+            line-height: 2;
+            color: #4a2c3b;
+            margin-bottom: 32px;
+            padding: 0 10px;
+        }
+        .message p { margin-bottom: 12px; }
+        .highlight {
+            display: inline-block;
+            background: linear-gradient(120deg, #fce4ec 0%, #fce4ec 40%, #fff8e1 100%);
+            padding: 0 8px;
+            border-radius: 4px;
+        }
+
+        /* 爱心按钮 */
+        .heart-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 44px;
+            font-size: 20px;
+            font-family: inherit;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #e91e63, #ff6f00);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 24px rgba(233, 30, 99, 0.35);
+        }
+        .heart-btn:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 32px rgba(233, 30, 99, 0.5);
+        }
+        .heart-btn:active { transform: scale(0.96); }
+
+        .heart-btn .heart {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .heart-btn:hover .heart {
+            animation: heartbeat 0.8s ease infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25%      { transform: scale(1.35); }
+            50%      { transform: scale(1); }
+            75%      { transform: scale(1.35); }
+        }
+
+        /* 弹出祝福 */
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            padding: 20px;
+        }
+        .popup-overlay.show { display: flex; }
+
+        .popup {
+            background: #fff;
+            border-radius: 32px;
+            padding: 48px 36px 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+        }
+        @keyframes popIn {
+            0%   { transform: scale(0.6); opacity: 0; }
+            100% { transform: scale(1);   opacity: 1; }
+        }
+
+        .popup .big-heart { font-size: 72px; line-height: 1; margin-bottom: 16px; }
+        .popup h2 {
+            font-size: 28px;
+            color: #e91e63;
+            margin-bottom: 16px;
+        }
+        .popup p {
+            font-size: 18px;
+            line-height: 1.9;
+            color: #4a2c3b;
+            margin-bottom: 24px;
+        }
+        .popup .close-btn {
+            padding: 10px 36px;
+            font-size: 16px;
+            font-family: inherit;
+            background: #fce4ec;
+            color: #ad1457;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .popup .close-btn:hover { background: #f8bbd0; }
+
+        /* 页脚 */
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #b5838d;
+        }
+
+        /* 响应式 */
+        @media (max-width: 500px) {
+            .card { padding: 32px 20px 30px; }
+            h1 { font-size: 34px; }
+            .message { font-size: 16px; }
+            .heart-btn { padding: 12px 30px; font-size: 17px; }
+        }
     </style>
-  </head>
-  <body class="min-h-screen font-sans overflow-x-hidden">
-    <!-- 首页 -->
-    <div id="homePage" class="page active bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4">
-      <div class="text-center mb-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-          特别的祝福
-        </h1>
+</head>
+<body>
 
-      </div>
+    <!-- 飘落花瓣 -->
+    <div class="petal-container" id="petalContainer"></div>
 
-      <div class="flex justify-center transform transition-all duration-300 hover:scale-105 active:scale-95">
-        <button
-          onclick="switchPage('birthdayPage')"
-          class="inline-block bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 text-lg md:text-xl"
-        >
-          <i class="fa-solid fa-heart mr-2"></i>
-          接收生日祝福
+    <!-- 主卡片 -->
+    <main class="card">
+        <div class="wreath">&#127800;</div>
+        <h1>母亲节快乐</h1>
+        <div class="subtitle">&#10086; Happy Mother's Day &#10086;</div>
+        <div class="divider"></div>
+
+        <div class="message">
+            <p>亲爱的妈妈：</p>
+            <p>
+                您的手掌是我童年最暖的港湾，<br>
+                您的白发是岁月最温柔的勋章。
+            </p>
+            <p>
+                愿时光对您温柔以待，<br>
+                愿笑容永远在您脸上盛开。
+            </p>
+            <p class="highlight">&#10084; 您陪我长大，我陪您变老 &#10084;</p>
+        </div>
+
+        <button class="heart-btn" onclick="showSurprise()">
+            <span class="heart">&#10084;</span>
+            点击送祝福
         </button>
-      </div>
 
-      <div class="mt-16 text-center text-gray-500 text-sm">
-        <p>❤️ 用爱制作的专属祝福 ❤️</p>
-      </div>
+        <div class="footer">&#127801; 爱你的孩子 &#127801;</div>
+    </main>
 
-      <!-- 装饰元素 -->
-      <div class="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden -z-10" id="homeDecorations">
-        <!-- 动态生成的爱心装饰 -->
-      </div>
-    </div>
-
-    <!-- 生日祝福页面 -->
-    <div id="birthdayPage" class="page min-h-screen bg-gradient-to-br from-pink-50 to-purple-100 overflow-hidden">
-      <!-- 顶部装饰 -->
-      <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-pink-300/30 to-transparent -z-10"></div>
-
-      <!-- 页面标题 -->
-      <header class="py-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-600">
-          生日快乐，我的小丁老师！
-        </h1>
-      </header>
-
-      <!-- 主要内容区 -->
-      <main class="container mx-auto px-4 py-8">
-        <!-- 生日卡片 -->
-        <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-[1.01] transition-all duration-300">
-          <!-- 卡片顶部图片 -->
-          <div class="h-64 overflow-hidden relative">
-            <img
-              src="https://space.coze.cn/api/coze_space/gen_image?image_size=landscape_16_9&prompt=Birthday%20background%20with%20balloons%20and%20confetti&sign=5a81eb555df78aaa347a5251ca58984c"
-              alt="Birthday celebration"
-              class="w-full h-full object-cover"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-            <div class="absolute bottom-4 left-0 right-0 text-center">
-              <span class="inline-block bg-pink-500 text-white px-4 py-1 rounded-full text-sm font-medium">
-                特别的日子 ❤️
-              </span>
-            </div>
-          </div>
-
-          <!-- 祝福消息 -->
-          <div class="p-6 md:p-8">
-            <div class="space-y-4 mb-8" id="birthdayMessage">
-              <!-- 动态显示的祝福消息 -->
-            </div>
-
-
-                <!-- 音频元素 -->
-                <audio
-                  id="audioPlayer"
-                  src="srkl.mp3"
-                  loop
-                  playsinline
-                  class="hidden"
-                />
-
-                <!-- 音频加载错误提示 -->
-                <div id="audioError" class="hidden mt-4 text-red-500 text-sm">
-                  <i class="fa-solid fa-exclamation-circle mr-1"></i>
-                  音乐文件加载失败，请确保srkl.mp3与HTML文件在同一目录
-                </div>
-            </div>
-          </div>
+    <!-- 弹出祝福 -->
+    <div class="popup-overlay" id="popup">
+        <div class="popup">
+            <div class="big-heart">&#10084;&#65039;</div>
+            <h2>妈妈，我爱你</h2>
+            <p>
+                谢谢您每一天的付出与包容。<br>
+                您是世界上最好的妈妈。<br>
+                祝您母亲节快乐，健康平安！
+            </p>
+            <p style="font-size: 28px; margin-bottom: 20px;">&#127800; &#127801; &#127802;</p>
+            <button class="close-btn" onclick="hideSurprise()">收下心意 &nbsp;&#10084;</button>
         </div>
-
-        <!-- 底部装饰元素 -->
-        <div class="mt-12 flex justify-center">
-          <div class="inline-block animate-bounce">
-            <i class="fa-solid fa-gift text-4xl text-pink-500"></i>
-          </div>
-        </div>
-      </main>
-
-      <!-- 页脚 -->
-      <footer class="mt-16 py-6 text-center text-gray-500 text-sm">
-        <p>用❤️制作的生日祝福 &copy; {new Date().getFullYear()}</p>
-      </footer>
-
-      <!-- 装饰性元素 - 气球 -->
-      <div class="fixed bottom-0 left-0 w-full h-64 pointer-events-none overflow-hidden -z-10" id="balloonContainer">
-        <!-- 动态生成的气球 -->
-      </div>
     </div>
 
     <script>
-      // 页面切换功能
-      function switchPage(pageId) {
-        // 隐藏所有页面
-        document.querySelectorAll('.page').forEach(page => {
-          page.classList.remove('active');
+        // 生成飘落花瓣
+        (function createPetals() {
+            const container = document.getElementById('petalContainer');
+            const count = 24;
+            for (let i = 0; i < count; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.width = petal.style.height = (12 + Math.random() * 14) + 'px';
+                petal.style.animationDuration = (6 + Math.random() * 8) + 's';
+                petal.style.animationDelay = (Math.random() * 10) + 's';
+                petal.style.opacity = 0.4 + Math.random() * 0.4;
+                container.appendChild(petal);
+            }
+        })();
+
+        // 弹窗控制
+        function showSurprise() {
+            document.getElementById('popup').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function hideSurprise() {
+            document.getElementById('popup').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        // 点击遮罩关闭
+        document.getElementById('popup').addEventListener('click', function(e) {
+            if (e.target === this) hideSurprise();
         });
-        // 显示目标页面
-        document.getElementById(pageId).classList.add('active');
-
-        // 如果切换到生日页面，初始化生日页面元素
-        if (pageId === 'birthdayPage') {
-          initBirthdayPage();
-        } else if (pageId === 'homePage') {
-          initHomePage();
-        }
-      }
-
-      // 音乐播放功能
-      let isPlaying = false;
-      const audioPlayer = document.getElementById('audioPlayer');
-      const musicButton = document.getElementById('musicButton');
-      const musicStatus = document.getElementById('musicStatus');
-
-      function toggleMusic() {
-        if (isPlaying) {
-          audioPlayer.pause();
-          musicButton.innerHTML = '<i class="fa-solid fa-play text-xl"></i>';
-          musicStatus.textContent = '点击播放生日音乐';
-        } else {
-          audioPlayer.play().then(() => {
-            musicButton.innerHTML = '<i class="fa-solid fa-pause text-xl"></i>';
-            musicStatus.textContent = '正在播放生日音乐';
-          }).catch(error => {
-            console.log("音乐播放需要用户交互:", error);
-            alert("请点击播放按钮以开始播放音乐");
-          });
-        }
-        isPlaying = !isPlaying;
-      }
-
-      // 初始化生日页面
-      function initBirthdayPage() {
-        // 显示祝福消息
-        const messages = [
-          "又到了你的专属日子。",
-          "很开心能陪你度过这一年又一年的时光，",
-          "见证你的成长与蜕变。",
-          "愿你未来的每一天，",
-          "都奔走在自己的热爱里，",
-          "不为琐事烦忧，",
-          "永远保持那份纯真与善良。",
-          "生日快乐，我永远在你身边。"
-        ];
-
-        const messageContainer = document.getElementById('birthdayMessage');
-        messageContainer.innerHTML = '';
-
-        messages.forEach((message, index) => {
-          setTimeout(() => {
-            const p = document.createElement('p');
-            p.className = 'text-lg md:text-xl text-gray-800 text-center leading-relaxed opacity-0 transform translate-y-4 transition-all duration-500';
-            p.textContent = message;
-            messageContainer.appendChild(p);
-
-            // 触发动画
-            setTimeout(() => {
-              p.classList.remove('opacity-0', 'translate-y-4');
-            }, 50);
-          }, 500 * (index + 1));
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') hideSurprise();
         });
-
-         // 创建气球装饰
-         createBalloons();
-
-          // 检查音频文件是否可加载
-          audioPlayer.addEventListener('error', function() {
-            document.getElementById('audioError').classList.remove('hidden');
-          });
-
-           // 现代浏览器需要用户交互才能播放音频
-           // 显示提示信息
-           musicStatus.textContent = '请点击播放按钮开始音乐';
-
-           // 尝试自动播放音乐（大多数浏览器会阻止）
-           setTimeout(() => {
-             audioPlayer.play().then(() => {
-               isPlaying = true;
-               musicButton.innerHTML = '<i class="fa-solid fa-pause text-xl"></i>';
-               musicStatus.textContent = '正在播放生日音乐';
-             }).catch(error => {
-               console.log("自动播放被浏览器阻止，请点击播放按钮:", error);
-               // 保持提示信息不变
-             });
-           }, 1000);
-        }
-      
-      // 初始化首页
-      function initHomePage() {
-        // 创建爱心装饰
-        createHearts();
-      }
-      
-      // 创建气球装饰
-      function createBalloons() {
-        const container = document.getElementById('balloonContainer');
-        container.innerHTML = '';
-        
-        const colors = ['#FF6B8B', '#8A2BE2', '#FFD700', '#3498db', '#2ecc71'];
-        
-        for (let i = 0; i < 8; i++) {
-          const balloon = document.createElement('div');
-          balloon.className = 'balloon';
-          balloon.innerHTML = '<i class="fa-solid fa-balloon"></i>';
-          
-          // 随机样式
-          const size = 20 + Math.random() * 40;
-          const leftPosition = 10 + Math.random() * 80;
-          const animationDuration = 15 + Math.random() * 15;
-          const animationDelay = Math.random() * 5;
-          const color = colors[Math.floor(Math.random() * colors.length)];
-          
-          balloon.style.fontSize = `${size}px`;
-          balloon.style.left = `${leftPosition}%`;
-          balloon.style.animationDuration = `${animationDuration}s`;
-          balloon.style.animationDelay = `${animationDelay}s`;
-          balloon.style.color = color;
-          
-          container.appendChild(balloon);
-        }
-      }
-      
-      // 创建爱心装饰
-      function createHearts() {
-        const container = document.getElementById('homeDecorations');
-        container.innerHTML = '';
-        
-        for (let i = 0; i < 10; i++) {
-          const heart = document.createElement('div');
-          heart.className = 'balloon';
-          heart.innerHTML = '<i class="fa-solid fa-heart"></i>';
-          
-          // 随机样式
-          const size = 10 + Math.random() * 20;
-          const leftPosition = Math.random() * 100;
-          const animationDuration = 15 + Math.random() * 15;
-          const animationDelay = Math.random() * 5;
-          const opacity = 0.5 + Math.random() * 0.5;
-          
-          heart.style.fontSize = `${size}px`;
-          heart.style.left = `${leftPosition}%`;
-          heart.style.animationDuration = `${animationDuration}s`;
-          heart.style.animationDelay = `${animationDelay}s`;
-          heart.style.color = Math.random() > 0.5 ? '#FF6B8B80' : '#8A2BE280';
-          heart.style.opacity = opacity;
-          
-          container.appendChild(heart);
-        }
-      }
-      
-      // 页面加载时初始化
-      window.onload = function() {
-        initHomePage();
-        
-        // 尝试预加载音乐
-        audioPlayer.addEventListener('canplaythrough', function() {
-          console.log('音乐已准备就绪');
-        });
-      };
     </script>
-  </body>
+</body>
 </html>
